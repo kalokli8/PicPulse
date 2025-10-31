@@ -231,6 +231,12 @@ class _PhotoListScreenState extends State<PhotoListScreen> {
 
                     return RefreshIndicator(
                       onRefresh: () async {
+                        // If searching, clear search textfield first
+                        if (state.isSearching) {
+                          _searchController.clear();
+                          _searchFocusNode.unfocus();
+                        }
+                        // RefreshPhotos will fetch fresh data and clear search state
                         context.read<PhotoBloc>().add(const RefreshPhotos());
                         _scrollToTop(); // Scroll to top when refreshing
                       },
@@ -239,6 +245,7 @@ class _PhotoListScreenState extends State<PhotoListScreen> {
                           Expanded(
                             child: GridView.builder(
                               controller: _scrollController,
+                              physics: const AlwaysScrollableScrollPhysics(),
                               padding: const EdgeInsets.all(
                                 AppConstants.smallPadding,
                               ),

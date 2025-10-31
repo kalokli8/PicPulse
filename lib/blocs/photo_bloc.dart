@@ -98,7 +98,7 @@ class PhotoBloc extends Bloc<PhotoEvent, PhotoState> {
     // Don't emit loading state - just restore original photos instantly
     if (_originalPhotos != null) {
       final allPhotos = _originalPhotos!;
-      final photosPerPage = 20;
+      final photosPerPage = PhotoBloc.photosPerPage;
       final totalPages = (allPhotos.length / photosPerPage).ceil();
       final firstPagePhotos = allPhotos.take(photosPerPage).toList();
 
