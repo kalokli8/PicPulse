@@ -16,13 +16,14 @@ class PhotoDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Photo - Use same cache settings as list screen
+            // Photo - Use high quality for detail screen
             AspectRatio(
               aspectRatio: 16 / 9,
               child: PreloadedImageWidget(
                 imageUrl: photo.url,
                 fit: BoxFit.cover,
                 width: double.infinity,
+                useHighQuality: true, // Full quality image for detail view
               ),
             ),
             // Photo Details
